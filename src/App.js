@@ -23,6 +23,7 @@ useEffect(() => {
             `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=fr&appid=3da62a8f0ff20ba967fb455d7a48a47a`
         )
         
+        
             .then((res) => {
                 setWeatherData(res.data);
                 setLoading(false);
