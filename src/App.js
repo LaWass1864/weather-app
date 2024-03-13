@@ -70,7 +70,6 @@ const App = () => {
     };
 
     // formater l'heure du lever et du coucher du soleil
-
     const formatTime = (timestamp) => {
         const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
         const hours = date.getHours();
