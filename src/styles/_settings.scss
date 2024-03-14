@@ -11,9 +11,9 @@ body {
     display: flex;
     justify-content: center;
 }
-
 .weatherContainer {
-    width: 13%;
+    width: 80%; /* Ajustez la largeur en pourcentage pour qu'elle soit plus flexible */
+    max-width: 300px; /* Définissez une largeur maximale pour éviter qu'elle ne devienne trop large sur les grands écrans */
     border-radius: 10px;
     position: fixed;
     top: 50%;
@@ -21,17 +21,13 @@ body {
     transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 2em; /* Utilisez des unités relatives comme em pour rendre le padding adaptable */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    /* Ajoute une ombre douce */
     font-family: $font1;
-    /* Choisissez votre police de caractères */
-
 
     h2 {
-        font-size: 18px;
-        margin-bottom: 5px;
-        font-family: $font1;
+        font-size: 1.2em; /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
+        margin-bottom: 0.5em; /* Utilisez des unités relatives comme em pour rendre les marges adaptables */
     }
 
     .temperatureIcon {
@@ -39,19 +35,17 @@ body {
         align-items: center;
 
         h3 {
-            font-size: 18px;
-            margin-right: 5px;
+            font-size: 1em; /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
+            margin-right: 0.5em; /* Utilisez des unités relatives comme em pour rendre les marges adaptables */
         }
 
         p {
-            font-size: 20px;
-            /* Ajustez la taille de l'icône en fonction de vos besoins */
+            font-size: 1.2em; /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
             margin: 0;
         }
     }
 
     em {
         font-style: italic;
-        font-family: $font1;
     }
 }

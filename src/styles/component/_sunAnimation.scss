@@ -6,23 +6,16 @@
 }
 
 .arc {
-  width: 93%;
-  /* Largeur de votre arc */
-  height: 80px;
-  /* Hauteur de l'arc augmentée */
-  border-top-left-radius: 150px;
-  /* Rayon du coin supérieur gauche plus grand */
-  border-top-right-radius: 150px;
-  /* Rayon du coin supérieur droit plus grand */
+  width: 93%; /* Largeur de votre arc */
+  height: 130px; /* Hauteur de l'arc augmentée */
+  border-top-left-radius: 150px; /* Rayon du coin supérieur gauche plus grand */
+  border-top-right-radius: 150px; /* Rayon du coin supérieur droit plus grand */
   border: 3px solid white;
-  position: absolute;
-  /* Position absolue pour placer l'arc */
-  bottom: 44px;
-  /* Réduire la distance entre l'arc et le bas */
+  position: absolute; /* Position absolue pour placer l'arc */
+  bottom: 40px; /* Réduire la distance entre l'arc et le bas */
   border-bottom: none;
   overflow: visible;
 }
-
 .arc::before {
   content: '';
   /* Ajouter du contenu à l'élément pseudo-élément */
