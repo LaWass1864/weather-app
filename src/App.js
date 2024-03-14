@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SunAnimation from './components/SunAnimation';
+import LottieBackground from './components/LottieBackground';
+import animationData from './Animation.json';
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null)
@@ -8,7 +10,6 @@ const App = () => {
     const [error, setError] = useState(null)
 
     useEffect(() => {
-        // demander la geolocalisation a l'utilisateur
         const getLocation = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(getWeatherData, handleLocationError);
@@ -23,21 +24,16 @@ const App = () => {
             axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=fr&appid=3da62a8f0ff20ba967fb455d7a48a47a`
             )
-
-
-                .then((res) => {
-                    setWeatherData(res.data);
-                    setLoading(false);
-                    console.log(res.data)
-
-                })
-                .catch((err) => {
-                    setError(err);
-                    setLoading(false);
-                });
+            .then((res) => {
+                setWeatherData(res.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError(err);
+                setLoading(false);
+            });
         };
 
-        // gestion des erreurs lors de la récupération de la position géographique de l'utilisateur.
         const handleLocationError = (error) => {
             setError(new Error(`Erreur de géolocalisation: ${error.message}`));
             setLoading(false);
@@ -49,7 +45,6 @@ const App = () => {
     if (loading) return <div>Chargement...</div>;
     if (error) return <div>Erreur: {error.message}</div>;
 
-    // Synchronisation du temps avec des icônes
     const getWeatherIcon = (weatherId) => {
         if (weatherId >= 200 && weatherId < 300) {
             return '⛈️'; // Orage
@@ -70,27 +65,22 @@ const App = () => {
         }
     };
 
-
-
-
     return (
-        <div>
+        <div className='weatherContainer'>
             {weatherData && (
-                <div className='weatherContainer'>
+                <>
                     <h2>{weatherData.name}</h2>
                     <div className="temperatureIcon">
                         <h3>{weatherData.main.temp.toFixed(1)}°</h3>
                         <p>{getWeatherIcon(weatherData.weather[0].id)}</p>
+                        <LottieBackground animationData={animationData} />
                     </div>
                     <em>{weatherData.weather[0].description}</em>
-                  
-
                     <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
-
-                </div>
+                </>
             )}
         </div>
     );
-};
+}
 
 export default App;
