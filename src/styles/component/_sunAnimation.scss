@@ -6,15 +6,12 @@
 }
 
 .arc {
-  width: 93%;
-  height: 130px;
-  border-top-left-radius: 150px;
-  border-top-right-radius: 150px;
-  border: 3px solid rgb(33, 32, 32);
+  width: 100%;
+  height: 3px; /* Épaisseur de la ligne droite */
+  background-color: rgb(33, 32, 32); /* Couleur de la ligne droite */
   position: absolute;
-  bottom: 0; /* Ajuster la position de l'arc pour qu'il soit au bas de l'élément parent */
-  border-bottom: none;
-  overflow: visible;
+  bottom: 100px; 
+
 }
 .arc::before {
   content: '';
@@ -55,10 +52,16 @@
 }
 .sun {
   position: absolute;
-  top: calc(45% - 25px); /* Ajuster la position verticale */
-  left: calc(50% - 50px); /* Position initiale horizontale */
-  transform: translateX(-50%); /* Centrer le soleil horizontalement */
+  bottom: -20px; /* Position verticale du soleil */
+  left: calc((100% - 40px) * var(--sun-position, 0)); /* Position horizontale du soleil en pourcentage */
+  width: 40px; /* Largeur du soleil */
+  height: 40px; /* Hauteur du soleil */
   font-size: 35px;
+  background-color: yellow; /* Couleur du soleil */
+  border-radius: 50%; /* Rendre le soleil rond */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .sun::before {
