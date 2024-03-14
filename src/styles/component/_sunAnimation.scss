@@ -1,0 +1,136 @@
+.sun-animation {
+  width: 100%;
+  height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.arc {
+  width: 93%;
+  /* Largeur de votre arc */
+  height: 80px;
+  /* Hauteur de l'arc augmentée */
+  border-top-left-radius: 150px;
+  /* Rayon du coin supérieur gauche plus grand */
+  border-top-right-radius: 150px;
+  /* Rayon du coin supérieur droit plus grand */
+  border: 3px solid white;
+  position: absolute;
+  /* Position absolue pour placer l'arc */
+  bottom: 44px;
+  /* Réduire la distance entre l'arc et le bas */
+  border-bottom: none;
+  overflow: visible;
+}
+
+.arc::before {
+  content: '';
+  /* Ajouter du contenu à l'élément pseudo-élément */
+  width: 10px;
+  /* Largeur de la boule noire */
+  height: 10px;
+  /* Hauteur de la boule noire */
+  background-color: white;
+  /* Couleur de la boule noire */
+  border-radius: 50%;
+  /* Rendre la boule noire ronde */
+  position: absolute;
+  bottom: -8px;
+  /* Positionner la boule noire juste en dessous de l'arc */
+  left: -4%;
+  /* Déplacer légèrement la boule blanche vers la gauche */
+}
+
+.arc::after {
+  content: '';
+  /* Ajouter du contenu à l'élément pseudo-élément */
+  width: 0;
+  /* Largeur initiale de la flèche */
+  height: 0;
+  /* Hauteur initiale de la flèche */
+  border-left: 5px solid transparent;
+  /* Cacher la partie gauche de la flèche */
+  border-right: 5px solid transparent;
+  /* Cacher la partie droite de la flèche */
+  border-top: 10px solid white;
+  /* Afficher la partie supérieure de la flèche */
+  position: absolute;
+  bottom: -10px;
+  /* Positionner la flèche juste en dessous de l'arc */
+  right: -4%;
+  /* Positionner la flèche à la fin de l'arc */
+}
+
+.sun {
+  position: absolute;
+  top: calc(60% - 25px);
+  /* Alignez-le un peu plus haut que le centre */
+  left: 50%;
+  /* Alignez-le horizontalement au centre */
+  font-size: 35px;
+  /* Taille de l'emoji */
+}
+
+.sun::before {
+  content: '☀️';
+  /* Insérez l'emoji soleil */
+  position: absolute;
+  top: 50%;
+  /* Alignez-le verticalement au centre */
+  left: 50%;
+  /* Alignez-le horizontalement au centre */
+  transform: translate(-50%, -50%);
+  /* Déplacez-le de moitié de sa largeur et hauteur vers le haut et la gauche pour le centrer */
+}
+
+.sun::after {
+  content: '';
+  /* Ajouter du contenu à l'élément pseudo-élément */
+  width: 20px;
+  /* Largeur de la flèche */
+  height: 20px;
+  /* Hauteur de la flèche */
+  transform: rotate(45deg);
+  /* Rotation de 45 degrés */
+  position: absolute;
+  top: 50%;
+  /* Alignez-le verticalement au centre */
+  right: -10px;
+  /* Déplacez-le à droite de 10px par rapport au soleil */
+}
+
+.sunrise-time {
+  position: absolute;
+  bottom: 15px;
+  /* Placer l'heure en dessous de l'arc */
+  left: 1%;
+  /* Ajuster la position horizontale */
+}
+
+.sunset-time {
+  position: absolute;
+  bottom: 15px;
+  /* Placer l'heure en dessous de l'arc */
+  right: 1%;
+  /* Ajuster la position horizontale */
+
+}
+
+.sunrise-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 1px;
+  /* Placer l'heure en dessous de l'arc */
+  right: 1%;
+}
+
+.sunset-icon {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  bottom: 1px;
+  /* Placer l'heure en dessous de l'arc */
+  left: 1%;
+  /* Ajuster la position horizontale */
+}

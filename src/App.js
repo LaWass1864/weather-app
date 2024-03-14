@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import SunAnimation from './components/SunAnimation';
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null)
@@ -69,13 +70,7 @@ const App = () => {
         }
     };
 
-    // formater l'heure du lever et du coucher du soleil
-    const formatTime = (timestamp) => {
-        const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-    };
+
 
 
     return (
@@ -88,9 +83,9 @@ const App = () => {
                         <p>{getWeatherIcon(weatherData.weather[0].id)}</p>
                     </div>
                     <em>{weatherData.weather[0].description}</em>
-                    {/* lever et coucher du soleil */}
-                    <em>Lever du soleil : {formatTime(weatherData.sys.sunrise)}</em>
-                    <em>Coucher du soleil : {formatTime(weatherData.sys.sunset)}</em>
+                  
+
+                    <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
 
                 </div>
             )}
