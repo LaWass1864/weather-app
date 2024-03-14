@@ -16,7 +16,7 @@ const LottieBackground = ({ animationData }) => {
     }
   }, [animationData]);
 
-  return <div ref={containerRef} />;
+  return  <div ref={containerRef} style={{ width: '50%', height: '50%' }} />;
 };
 
 export default LottieBackground;
