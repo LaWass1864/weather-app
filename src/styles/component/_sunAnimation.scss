@@ -6,13 +6,13 @@
 }
 
 .arc {
-  width: 93%; /* Largeur de votre arc */
-  height: 130px; /* Hauteur de l'arc augmentée */
-  border-top-left-radius: 150px; /* Rayon du coin supérieur gauche plus grand */
-  border-top-right-radius: 150px; /* Rayon du coin supérieur droit plus grand */
+  width: 93%;
+  height: 130px;
+  border-top-left-radius: 150px;
+  border-top-right-radius: 150px;
   border: 3px solid rgb(33, 32, 32);
-  position: absolute; /* Position absolue pour placer l'arc */
-  bottom: 40px; /* Réduire la distance entre l'arc et le bas */
+  position: absolute;
+  bottom: 0; /* Ajuster la position de l'arc pour qu'il soit au bas de l'élément parent */
   border-bottom: none;
   overflow: visible;
 }
@@ -56,8 +56,7 @@
 .sun {
   position: absolute;
   top: calc(45% - 25px); /* Ajuster la position verticale */
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc((45% - 25px) * (sunPositionPercentage / 100)); /* Ajuster la position horizontale */
   font-size: 35px;
 }
 
