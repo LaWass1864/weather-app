@@ -28,27 +28,31 @@ const SunAnimation = ({ sunrise, sunset }) => {
     sunPositionPercentage = 100;
   } else {
     sunPositionPercentage = ((currentTotalMinutes - sunriseTotalMinutes) / (sunsetTotalMinutes - sunriseTotalMinutes)) * 100;
+    // Limiter la valeur de sunPositionPercentage entre 0 et 100
+    sunPositionPercentage = Math.max(0, Math.min(100, sunPositionPercentage));
   }
 
   return (
     <div className="sun-animation">
-      <div className="arc"></div>
-      <div className="sun" style={{ left: `${sunPositionPercentage}%` }}>
-        <img
-          className='sunrise-icon'
-          src={"./assets/coucherDuSoleil.png"}
-          alt="icon-sunrise"
-        />
-        <img
-          className='sunset-icon'
-          src={"./assets/leverDuSoleil.png"}
-          alt="icon-sunrise"
-        />
-      </div>
+      <div className="arc">
+      {/* Utilisation de sunPositionPercentage pour positionner le soleil */}
+      <div className="sun" style={{ left: `calc(${sunPositionPercentage}% - 20px)` }}></div>
       <div className="sunrise-time">{formatTime(sunrise)}</div>
       <div className="sunset-time">{formatTime(sunset)}</div>
+      <img
+        className='sunrise-icon'
+        src={"./assets/coucherDuSoleil.png"}
+        alt="icon-sunrise"
+      />
+      <img
+        className='sunset-icon'
+        src={"./assets/leverDuSoleil.png"}
+        alt="icon-sunrise"
+      />
+    </div>
     </div>
   );
 };
 
 export default SunAnimation;
+
