@@ -56,7 +56,8 @@
 .sun {
   position: absolute;
   top: calc(45% - 25px); /* Ajuster la position verticale */
-  left: calc((45% - 25px) * (sunPositionPercentage / 100)); /* Ajuster la position horizontale */
+  left: calc(50% - 50px); /* Position initiale horizontale */
+  transform: translateX(-50%); /* Centrer le soleil horizontalement */
   font-size: 35px;
 }
 
