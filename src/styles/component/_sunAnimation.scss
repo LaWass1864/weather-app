@@ -53,43 +53,31 @@
   right: -4%;
   /* Positionner la flèche à la fin de l'arc */
 }
-
 .sun {
   position: absolute;
-  top: calc(45% - 25px);
-  /* Alignez-le un peu plus haut que le centre */
+  top: calc(45% - 25px); /* Ajuster la position verticale */
   left: 50%;
-  /* Alignez-le horizontalement au centre */
+  transform: translateX(-50%);
   font-size: 35px;
-  /* Taille de l'emoji */
 }
 
 .sun::before {
   content: '☀️';
-  /* Insérez l'emoji soleil */
   position: absolute;
   top: 50%;
-  /* Alignez-le verticalement au centre */
   left: 50%;
-  /* Alignez-le horizontalement au centre */
   transform: translate(-50%, -50%);
-  /* Déplacez-le de moitié de sa largeur et hauteur vers le haut et la gauche pour le centrer */
 }
 
 .sun::after {
   content: '';
-  /* Ajouter du contenu à l'élément pseudo-élément */
   width: 20px;
-  /* Largeur de la flèche */
   height: 20px;
-  /* Hauteur de la flèche */
   transform: rotate(45deg);
-  /* Rotation de 45 degrés */
   position: absolute;
-  top: 50%;
-  /* Alignez-le verticalement au centre */
-  right: -10px;
-  /* Déplacez-le à droite de 10px par rapport au soleil */
+  top: 100%; /* Bas de l'arc */
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .sunrise-time {
