@@ -72,7 +72,7 @@ const App = () => {
                     <h2>{weatherData.name}</h2>
                     <div className="temperatureIcon">
                         <h3>{weatherData.main.temp.toFixed(1)}°</h3>
-                        <p>{getWeatherIcon(weatherData.weather[0].id)}</p>
+                        <h3>{getWeatherIcon(weatherData.weather[0].id)}</h3>
                         <LottieBackground animationData={animationData} />
                     </div>
                     <em>{weatherData.weather[0].description}</em>
