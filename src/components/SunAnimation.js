@@ -33,19 +33,20 @@ const SunAnimation = ({ sunrise, sunset }) => {
   return (
     <div className="sun-animation">
       <div className="arc"></div>
-      <div className="sun" style={{ left: `${sunPositionPercentage}%` }}></div>
+      <div className="sun" style={{ left: `${sunPositionPercentage}%` }}>
+        <img
+          className='sunrise-icon'
+          src={"./assets/coucherDuSoleil.png"}
+          alt="icon-sunrise"
+        />
+        <img
+          className='sunset-icon'
+          src={"./assets/leverDuSoleil.png"}
+          alt="icon-sunrise"
+        />
+      </div>
       <div className="sunrise-time">{formatTime(sunrise)}</div>
       <div className="sunset-time">{formatTime(sunset)}</div>
-      <img
-        className='sunrise-icon'
-        src={"./assets/coucherDuSoleil.png"}
-        alt="icon-sunrise"
-      />
-      <img
-        className='sunset-icon'
-        src={"./assets/leverDuSoleil.png"}
-        alt="icon-sunrise"
-      />
     </div>
   );
 };
