@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import SunAnimation from './components/SunAnimation';
+
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -79,9 +79,7 @@ const App = () => {
                     <h1>{weatherData.main.temp.toFixed(1)}°</h1>
                     <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
                     <h3 className='weatherDescription'>{weatherData.weather[0].description}</h3>
-                    <div className='sunAnimation'>
-                        <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
-                    </div>
+                
                     <div className='hoursContainer'>
                         <div className="sunrise-time">
                             {formatTime(weatherData.sys.sunrise)}
