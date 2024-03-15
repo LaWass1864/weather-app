@@ -1,120 +1,30 @@
-.sun-animation {
-  width: 100%;
-  height: 200px;
-  position: relative;
-  overflow: hidden;
-}
-
-.arc {
-  width: 100%;
-  height: 3px; /* Épaisseur de la ligne droite */
-  background-color: rgb(33, 32, 32); /* Couleur de la ligne droite */
-  position: absolute;
-  bottom: 100px; 
-
-}
-.arc::before {
-  content: '';
-  /* Ajouter du contenu à l'élément pseudo-élément */
-  width: 10px;
-  /* Largeur de la boule noire */
-  height: 10px;
-  /* Hauteur de la boule noire */
-  background-color: white;
-  /* Couleur de la boule noire */
-  border-radius: 50%;
-  /* Rendre la boule noire ronde */
-  position: absolute;
-  bottom: -8px;
-  /* Positionner la boule noire juste en dessous de l'arc */
-  left: -2%;
-  /* Déplacer légèrement la boule blanche vers la gauche */
-}
-
-.arc::after {
-  content: '';
-  /* Ajouter du contenu à l'élément pseudo-élément */
-  width: 0;
-  /* Largeur initiale de la flèche */
-  height: 0;
-  /* Hauteur initiale de la flèche */
-  border-left: 5px solid transparent;
-  /* Cacher la partie gauche de la flèche */
-  border-right: 5px solid transparent;
-  /* Cacher la partie droite de la flèche */
-  border-top: 10px solid white;
-  /* Afficher la partie supérieure de la flèche */
-  position: absolute;
-  bottom: -10px;
-  /* Positionner la flèche juste en dessous de l'arc */
-  right: -2%;
-  /* Positionner la flèche à la fin de l'arc */
-}
-.sun {
-  position: absolute;
-  bottom: -20px; /* Position verticale du soleil */
-  left: calc((100% - 40px) * var(--sun-position, 0)); /* Position horizontale du soleil en pourcentage */
-  width: 40px; /* Largeur du soleil */
-  height: 40px; /* Hauteur du soleil */
-  font-size: 35px;
-  background-color: yellow; /* Couleur du soleil */
-  border-radius: 50%; /* Rendre le soleil rond */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.sun::before {
-  content: '☀️';
-  position: absolute;
+.progress-container {
+  width: 80%; /* Ajustez la largeur en pourcentage pour qu'elle soit plus flexible */
+  max-width: 300px; /* Définissez une largeur maximale pour éviter qu'elle ne devienne trop large sur les grands écrans */
+  border-radius: 10px;
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 2em; /* Utilisez des unités relatives comme em pour rendre le padding adaptable */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.sun::after {
-  content: '';
-  width: 20px;
-  height: 20px;
-  transform: rotate(45deg);
-  position: absolute;
-  top: 100%; /* Bas de l'arc */
-  left: 50%;
-  transform: translateX(-50%);
+.progress-bar {
+  width: 100%;
+  height: 10px; /* Hauteur de la barre de progression */
+  border-radius: 10px; /* Pour arrondir les coins */
+  overflow: hidden; /* Pour cacher le dépassement */
 }
 
-.sunrise-time {
-  position: absolute;
-  bottom: 15px;
-  /* Placer l'heure en dessous de l'arc */
-  left: 1%;
-  /* Ajuster la position horizontale */
+.progress {
+  height: 100%; /* Pour remplir la hauteur de la barre de progression */
 }
 
-.sunset-time {
-  position: absolute;
-  bottom: 15px;
-  /* Placer l'heure en dessous de l'arc */
-  right: 1%;
-  /* Ajuster la position horizontale */
-
+.blue {
+  background-color: blue;
 }
 
-.sunrise-icon {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  bottom: 1px;
-  /* Placer l'heure en dessous de l'arc */
-  right: 1%;
-}
-
-.sunset-icon {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  bottom: 1px;
-  /* Placer l'heure en dessous de l'arc */
-  left: 1%;
-  /* Ajuster la position horizontale */
+.orange {
+  background-color: orange;
 }

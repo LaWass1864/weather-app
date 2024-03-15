@@ -1,58 +1,42 @@
-import React from 'react';
-
-const formatTime = (timestamp) => {
-  const date = new Date(timestamp * 1000);
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
-  return `${hours}:${minutes < 10 ? '0' : ''}${minutes}`;
-};
+import React, { useState, useEffect } from 'react';
 
 const SunAnimation = ({ sunrise, sunset }) => {
-  const currentDate = new Date();
-  const currentHour = currentDate.getHours();
-  const currentMinute = currentDate.getMinutes();
+  const [progress, setProgress] = useState(0);
 
-  const sunriseHour = new Date(sunrise * 1000).getHours();
-  const sunriseMinute = new Date(sunrise * 1000).getMinutes();
-  const sunsetHour = new Date(sunset * 1000).getHours();
-  const sunsetMinute = new Date(sunset * 1000).getMinutes();
+  useEffect(() => {
+    const calculateProgress = () => {
+      const now = new Date();
+      const totalMinutes = (sunset - sunrise) / (1000 * 60); // Convert milliseconds to minutes
+      const elapsedMinutes = (now - sunrise) / (1000 * 60);
+      const currentProgress = (elapsedMinutes / totalMinutes) * 100;
+      setProgress(currentProgress);
+    };
 
-  const sunriseTotalMinutes = sunriseHour * 60 + sunriseMinute;
-  const sunsetTotalMinutes = sunsetHour * 60 + sunsetMinute;
-  const currentTotalMinutes = currentHour * 60 + currentMinute;
+    calculateProgress(); // Calculate progress initially
 
-  let sunPositionPercentage = 0;
-  if (currentTotalMinutes <= sunriseTotalMinutes) {
-    sunPositionPercentage = 0;
-  } else if (currentTotalMinutes >= sunsetTotalMinutes) {
-    sunPositionPercentage = 100;
-  } else {
-    sunPositionPercentage = ((currentTotalMinutes - sunriseTotalMinutes) / (sunsetTotalMinutes - sunriseTotalMinutes)) * 100;
-    // Limiter la valeur de sunPositionPercentage entre 0 et 100
-    sunPositionPercentage = Math.max(0, Math.min(100, sunPositionPercentage));
-  }
+    const interval = setInterval(calculateProgress, 60000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, [sunrise, sunset]);
 
   return (
-    <div className="sun-animation">
-      <div className="arc">
-      {/* Utilisation de sunPositionPercentage pour positionner le soleil */}
-      <div className="sun" style={{ left: `calc(${sunPositionPercentage}% - 20px)` }}></div>
-      <div className="sunrise-time">{formatTime(sunrise)}</div>
-      <div className="sunset-time">{formatTime(sunset)}</div>
-      <img
-        className='sunrise-icon'
-        src={"./assets/coucherDuSoleil.png"}
-        alt="icon-sunrise"
-      />
-      <img
-        className='sunset-icon'
-        src={"./assets/leverDuSoleil.png"}
-        alt="icon-sunrise"
-      />
-    </div>
+    <div className="progress-container">
+      <div className="progress-bar">
+        <div
+          className="progress blue"
+          style={{
+            width: `${Math.min(progress, 50)}%`, // Limit to 50% or current progress, whichever is smaller
+          }}
+        ></div>
+        <div
+          className="progress orange"
+          style={{
+            width: `${Math.max(0, progress - 50)}%`, // Start from 0 if progress is less than 50%
+          }}
+        ></div>
+      </div>
     </div>
   );
 };
 
 export default SunAnimation;
-

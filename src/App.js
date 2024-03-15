@@ -73,7 +73,6 @@ const App = () => {
                     <div className="temperatureIcon">
                         <h2>{weatherData.main.temp.toFixed(1)}°</h2>
                         <p>{getWeatherIcon(weatherData.weather[0].id)}</p>
-                        
                     </div>
                     <LottieBackground animationData={animationData} />
                     <em>{weatherData.weather[0].description}</em>
