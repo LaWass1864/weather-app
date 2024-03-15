@@ -25,23 +25,27 @@ const SunAnimation = ({ sunrise, sunset }) => {
     return () => clearInterval(interval); // Nettoyer l'intervalle lors du démontage du composant
   }, [sunrise, sunset]);
 
+
   return (
     <div className="progress-container">
-    <div className="progress-bar">
-      <div
-        className="progress blue"
-        style={{
-          width: `${Math.min(progress, 50)}%`, // Limiter à 50% ou la progression actuelle, selon le plus petit
-        }}
-      ></div>
-      <div
-        className="progress orange"
-        style={{
-          width: `${Math.max(0, progress - 50)}%`, // Commencer à 0 si la progression est inférieure à 50%
-        }}
-      ></div>
+      <div className="progress-bar-container">
+        <div className="progress-bar">
+          <div
+            className="progress blue"
+            style={{
+              width: `${Math.min(progress, 50)}%`, // Limiter à 50% ou la progression actuelle, selon le plus petit
+            }}
+          ></div>
+          <div
+            className="progress orange"
+            style={{
+              width: `${Math.max(0, progress - 50)}%`, // Commencer à 0 si la progression est inférieure à 50%
+            }}
+          ></div>
+        </div>
+      </div>
+
     </div>
-  </div>
   );
 };
 

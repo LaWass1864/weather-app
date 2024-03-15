@@ -1,29 +1,35 @@
 .progress-container {
-  width: 100%; /* Ajustez la largeur en pourcentage pour qu'elle soit plus flexible */
-  max-width: 300px; /* Définissez une largeur maximale pour éviter qu'elle ne devienne trop large sur les grands écrans */
+  width: 100%;
+  max-width: 300px;
   border-radius: 10px;
   position: fixed;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 2em; /* Utilisez des unités relatives comme em pour rendre le padding adaptable */
+  padding: 2em;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .progress-bar {
   width: 100%;
-  height: 10px; /* Hauteur de la barre de progression */
-  border-radius: 10px; /* Pour arrondir les coins */
-  overflow: hidden; /* Pour cacher le dépassement */
+  height: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .progress {
-  height: 100%; /* Pour remplir la hauteur de la barre de progression */
+  height: 100%;
 }
 
 .blue {
-  background-color: #FFD159; /* Inverser la couleur pour la progression */
+  background-color: #39375B; /* Couleur de la barre de progression */
 }
 
 .orange {
-  background-color: #39375B; /* Inverser la couleur pour la barre de progression */
+  background-color: #FFD159; /* Couleur de la progression */
+}
+
+
+.hoursContainer{
+  display: flex;
+  
 }
