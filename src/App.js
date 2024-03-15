@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SunAnimation from './components/SunAnimation';
-import { Backpack } from 'react-kawaii'
+
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null)
@@ -75,9 +75,10 @@ const App = () => {
                     {/* Icon correspondant a l'état de la météo  */}
                     <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
                     {/* Description */}
-                    <p>{weatherData.weather[0].description}</p>
+                    <h3>{weatherData.weather[0].description}</h3>
                     <div className='sunAnimation'>
                         <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
+
                     </div>
                 </div>
             )}
