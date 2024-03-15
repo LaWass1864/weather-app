@@ -67,6 +67,7 @@ const App = () => {
 
     return (
         <div className='weatherContainer'>
+            {/*  éviter les erreurs si weatherData est nul ou non défini */}
             {weatherData && (
                 <div>
                     {/* Ville, Pays */}
