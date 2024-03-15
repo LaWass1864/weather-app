@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SunAnimation from './components/SunAnimation';
-import LottieBackground from './components/LottieBackground';
-import animationData from './Animation.json';
+import { Backpack } from 'react-kawaii'
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null)
@@ -24,14 +23,14 @@ const App = () => {
             axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=fr&appid=3da62a8f0ff20ba967fb455d7a48a47a`
             )
-            .then((res) => {
-                setWeatherData(res.data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err);
-                setLoading(false);
-            });
+                .then((res) => {
+                    setWeatherData(res.data);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    setError(err);
+                    setLoading(false);
+                });
         };
 
         const handleLocationError = (error) => {
@@ -69,14 +68,17 @@ const App = () => {
         <div className='weatherContainer'>
             {weatherData && (
                 <div>
+                    {/* Ville, Pays */}
                     <h2>{weatherData.name}</h2>
-                    <div className="temperatureIcon">
-                        <h1>{weatherData.main.temp.toFixed(1)}°</h1>
-                        <p>{getWeatherIcon(weatherData.weather[0].id)}</p>
+                    {/* Température*/}
+                    <h1>{weatherData.main.temp.toFixed(1)}°</h1>
+                    {/* Icon correspondant a l'état de la météo  */}
+                    <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
+                    {/* Description */}
+                    <p>{weatherData.weather[0].description}</p>
+                    <div className='sunAnimation'>
+                        <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
                     </div>
-                    <LottieBackground className="animationLottie" animationData={animationData} />
-                    <em>{weatherData.weather[0].description}</em>
-                    <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
                 </div>
             )}
         </div>

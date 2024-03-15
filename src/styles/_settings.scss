@@ -11,63 +11,34 @@ body {
     justify-content: center;
 }
 
+// centrer le weatherContainer
 .weatherContainer {
-    width: 100%;
+    width: 100%;   
     /* Ajustez la largeur en pourcentage pour qu'elle soit plus flexible */
-    max-width: 400px;
+    max-width: 300px;
     /* Définissez une largeur maximale pour éviter qu'elle ne devienne trop large sur les grands écrans */
     border-radius: 10px;
     position: fixed;
-    top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    padding: 1em;
+    transform: translateX(-50%);
+
+    padding: 2em;
     /* Utilisez des unités relatives comme em pour rendre le padding adaptable */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    font-family: $font1;
+}
 
-    h1 {
-        font-size: 1em;
-        /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
-        margin-bottom: 0.5em;
-        ::after {
-            content: "<- cela est intéressant";
-            color: green;
-        }
+.getWeatherIcon {
+    font-size: 10em;
+    /* Augmenter la taille de l'icône */
+    display: flex;
+    justify-content: center;
+}
 
-    h2 {
-        font-size: 1.2em; /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
-        margin-bottom: 0.5em;
-        /* Utilisez des unités relatives comme em pour rendre les marges adaptables */
-        ::after {
-            content: "<- cela est intéressant";
-            color: green;
-        }
-    }
-
-    }
-
-    .temperatureIcon {
-        display: flex;
-        align-items: center;
-
-        h3 {
-            font-size: 2em;
-            /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
-            margin-right: 0.5em;
-            /* Utilisez des unités relatives comme em pour rendre les marges adaptables */
-        }
-
-        p {
-            font-size: 1.2em;
-            /* Utilisez des unités relatives comme em pour rendre la taille de la police adaptable */
-            margin: 0;
-        }
-    }
-
-    em {
-        font-style: italic;
-    }
+.sunAnimation {
+    border: 1px solid #ccc;
+    /* Bordure autour de sunAnimation */
+    padding: 10px;
+    /* Espace intérieur */
+    margin-top: auto;
+    /* Place sunAnimation en bas */
 }
