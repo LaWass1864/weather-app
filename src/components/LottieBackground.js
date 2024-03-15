@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import lottie from 'lottie-web';
-
 const LottieBackground = ({ animationData }) => {
   const containerRef = useRef(null);
 
@@ -16,7 +15,7 @@ const LottieBackground = ({ animationData }) => {
     }
   }, [animationData]);
 
-  return  <div ref={containerRef} style={{ width: '50%', height: '50%' }} />;
+  return  <div ref={containerRef} style={{ width: '30%', height: '30%' }} />;
 };
 
 export default LottieBackground;

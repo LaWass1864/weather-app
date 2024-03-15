@@ -27,7 +27,9 @@ const SunAnimation = ({ sunrise, sunset }) => {
           style={{
             width: `${Math.min(progress, 50)}%`, // Limit to 50% or current progress, whichever is smaller
           }}
-        ></div>
+        >
+          {progress === 50 && <span>☀️</span>}
+        </div>
         <div
           className="progress orange"
           style={{

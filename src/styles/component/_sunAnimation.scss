@@ -3,7 +3,6 @@
   max-width: 300px; /* Définissez une largeur maximale pour éviter qu'elle ne devienne trop large sur les grands écrans */
   border-radius: 10px;
   position: fixed;
-  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 2em; /* Utilisez des unités relatives comme em pour rendre le padding adaptable */
@@ -28,3 +27,4 @@
 .orange {
   background-color: orange;
 }
+

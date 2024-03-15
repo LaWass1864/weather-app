@@ -68,16 +68,16 @@ const App = () => {
     return (
         <div className='weatherContainer'>
             {weatherData && (
-                <>
-                    <h1>{weatherData.name}</h1>
+                <div>
+                    <h2>{weatherData.name}</h2>
                     <div className="temperatureIcon">
-                        <h2>{weatherData.main.temp.toFixed(1)}°</h2>
+                        <h1>{weatherData.main.temp.toFixed(1)}°</h1>
                         <p>{getWeatherIcon(weatherData.weather[0].id)}</p>
                     </div>
-                    <LottieBackground animationData={animationData} />
+                    <LottieBackground className="animationLottie" animationData={animationData} />
                     <em>{weatherData.weather[0].description}</em>
                     <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
-                </>
+                </div>
             )}
         </div>
     );
