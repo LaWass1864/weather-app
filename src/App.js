@@ -26,6 +26,7 @@ const App = () => {
                 .then((res) => {
                     setWeatherData(res.data);
                     setLoading(false);
+                    console.log(res.data);
                 })
                 .catch((err) => {
                     setError(err);
@@ -69,13 +70,13 @@ const App = () => {
             {weatherData && (
                 <div>
                     {/* Ville, Pays */}
-                    <h2>{weatherData.name}</h2>
+                    <h2>{weatherData.name},{weatherData.sys.country}</h2>
                     {/* Température*/}
                     <h1>{weatherData.main.temp.toFixed(1)}°</h1>
                     {/* Icon correspondant a l'état de la météo  */}
                     <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
                     {/* Description */}
-                    <h3>{weatherData.weather[0].description}</h3>
+                    <h3 className='weatherDescription'>{weatherData.weather[0].description}</h3>
                     <div className='sunAnimation'>
                         <SunAnimation sunrise={weatherData.sys.sunrise} sunset={weatherData.sys.sunset} />
 
