@@ -9,6 +9,8 @@ const App = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
+
+        // verifier si la géolocalisation est prise par le navigateur
         const getLocation = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(getWeatherData, handleLocationError);
@@ -18,19 +20,20 @@ const App = () => {
             }
         };
 
+        // aller chercher les données de l'API
         const getWeatherData = (position) => {
             const { latitude, longitude } = position.coords;
             axios.get(
                 `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&lang=fr&appid=3da62a8f0ff20ba967fb455d7a48a47a`
             )
-            .then((res) => {
-                setWeatherData(res.data);
-                setLoading(false);
-            })
-            .catch((err) => {
-                setError(err);
-                setLoading(false);
-            });
+                .then((res) => {
+                    setWeatherData(res.data);
+                    setLoading(false);
+                })
+                .catch((err) => {
+                    setError(err);
+                    setLoading(false);
+                });
         };
 
         const handleLocationError = (error) => {
@@ -41,6 +44,7 @@ const App = () => {
         getLocation();
     }, []);
 
+    //  mettre un icon en fonction du temps
     const getWeatherIcon = (weatherId) => {
         if (weatherId >= 200 && weatherId < 300) {
             return '⛈️'; // Orage
@@ -61,6 +65,7 @@ const App = () => {
         }
     };
 
+    // formattage de l'heure du lever et du coucher du soleil
     const formatTime = (timestamp) => {
         const date = new Date(timestamp * 1000); // Convertir le timestamp en millisecondes
         const hours = date.getHours().toString().padStart(2, '0'); // Obtenir l'heure en format 24h
@@ -68,30 +73,50 @@ const App = () => {
         return `${hours}:${minutes}`;
     };
 
-    return (
-        <div className="App">
-         
-        <div className='weatherContainer'>
-            {loading ? (
-                <div>Chargement...</div>
-            ) : error ? (
-                <div>Erreur: {error.message}</div>
-            ) : weatherData ? (
-                <div>
-                    <h2>{weatherData.name}, {weatherData.sys.country}</h2>
-                    <h1>{weatherData.main.temp.toFixed(1)}°</h1>
-                    <span className='getWeatherIcon animate__animated animate__rotateIn'>{getWeatherIcon(weatherData.weather[0].id)}</span>
-                    <h3 className='weatherDescription'>{weatherData.weather[0].description.toUpperCase()}</h3>
-                    <SunAnimation sunrise={weatherData && weatherData.sys.sunrise} sunset={weatherData && weatherData.sys.sunset} />
-                    <div className="hourContainer">
-                    <em>{formatTime(weatherData.sys.sunrise)}</em>
-                    <em>{formatTime(weatherData.sys.sunset)}</em>
-                    </div>
-                </div>
+    // le bakcground change lorsque le soleil se couche 
+    const isSunset = (sunsetTimestamp) => {
+        const currentTime = new Date().getTime() / 1000; // Convertir en secondes
+        return currentTime > sunsetTimestamp;
+    };
 
-                
-            ) : null}
-        </div>
+
+    return (
+        // le background de l'application se fonce 5 minute avant que le soleil se couche
+        <div className={`App ${weatherData && isSunset(weatherData.sys.sunset) ? 'sunsetBackground' : ''}`}>
+            <div className='weatherContainer'>
+                {loading ? (
+                    <div>Chargement...</div>
+                ) : error ? (
+                    <div>Erreur: {error.message}</div>
+                ) : weatherData ? (
+                    <div>
+                        <h2>{weatherData.name}, {weatherData.sys.country}</h2>
+                        <h1>{weatherData.main.temp.toFixed(1)}°</h1>
+                        <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
+                        <h3 className='weatherDescription'>{weatherData.weather[0].description.toUpperCase()}</h3>
+                        <SunAnimation sunrise={weatherData && weatherData.sys.sunrise} sunset={weatherData && weatherData.sys.sunset} />
+                        <div className="hourContainer">
+                            <em>{formatTime(weatherData.sys.sunrise)}</em>
+                            <em>{formatTime(weatherData.sys.sunset)}</em>
+
+                        </div>
+                        <div className="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sunrise" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                                <path d="M3 21l18 0" />
+                                <path d="M12 9v-6l3 3m-6 0l3 -3" />
+                            </svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sunset" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
+                                <path d="M3 21l18 0" />
+                                <path d="M12 3v6l3 -3m-6 0l3 3" />
+                            </svg>
+                        </div>
+                    </div>
+                ) : null}
+            </div>
         </div>
     );
 };
