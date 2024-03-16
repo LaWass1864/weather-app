@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import BackgroundAnimation from './components/BackgroundAnimation';
-
+import SunAnimation from './components/SunAnimation';
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -70,7 +69,7 @@ const App = () => {
 
     return (
         <div className="App">
-            <BackgroundAnimation />
+         
         <div className='weatherContainer'>
             {loading ? (
                 <div>Chargement...</div>
@@ -82,16 +81,14 @@ const App = () => {
                     <h1>{weatherData.main.temp.toFixed(1)}°</h1>
                     <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
                     <h3 className='weatherDescription'>{weatherData.weather[0].description}</h3>
-                
-                    <div className='hoursContainer'>
-                        <div className="sunrise-time">
-                            {formatTime(weatherData.sys.sunrise)}
-                        </div>
-                        <div className="sunset-time">
-                            {formatTime(weatherData.sys.sunset)}
-                        </div>
+                    <SunAnimation sunrise={weatherData && weatherData.sys.sunrise} sunset={weatherData && weatherData.sys.sunset} />
+                    <div className="hourContainer">
+                    <em>{formatTime(weatherData.sys.sunrise)}</em>
+                    <em>{formatTime(weatherData.sys.sunset)}</em>
                     </div>
                 </div>
+
+                
             ) : null}
         </div>
         </div>

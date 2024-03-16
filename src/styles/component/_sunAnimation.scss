@@ -1,35 +1,36 @@
-.progress-container {
-  width: 100%;
-  max-width: 300px;
-  border-radius: 10px;
-  position: fixed;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2em;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+.sun-animation {
+    width: 300px; /* Largeur de l'animation */
+    height: 50px; /* Hauteur de l'animation */
 
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.progress {
-  height: 100%;
-}
-
-.blue {
-  background-color: #39375B; /* Couleur de la barre de progression */
-}
-
-.orange {
-  background-color: #FFD159; /* Couleur de la progression */
-}
-
-
-.hoursContainer{
-  display: flex;
+  }
   
-}
+  .progress-bar {
+    position: relative;
+    width: 100%;
+    height: 50%;
+    background-color: #ddd; /* Couleur de la barre de progression */
+  }
+  
+  .progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #fdd835; /* Couleur de la progression */
+  }
+  
+  .sun {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #bd22b2; /* Couleur du soleil */
+  }
+  
+
+  .hourContainer{
+    display: flex;
+    justify-content: space-between;
+  }
