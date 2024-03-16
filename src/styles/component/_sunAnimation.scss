@@ -21,17 +21,19 @@
     border-radius: 12px;
   }
   
-  .sun {
-    position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background-color: #bd22b2; /* Couleur du soleil */
+  .sun{
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px; /* Largeur ajustable pour accueillir l'icône */
+  height: 40px; /* Hauteur ajustable */
+  font-size: 20px; /* Taille de police ajustable */
+  color: #bd22b2; /* Couleur du soleil */
+  background-image: url('../../assets/icons8-sun-48.png'); /* URL de votre icône */
+  background-size: 30px 30px; /* Taille de l'icône */
+  background-repeat: no-repeat;
+  background-position: left center; 
   }
-  
-
   .hourContainer{
     display: flex;
     justify-content: space-between;
