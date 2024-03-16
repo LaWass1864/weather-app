@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import BackgroundAnimation from './components/BackgroundAnimation';
 
 
 const App = () => {
@@ -68,6 +69,8 @@ const App = () => {
     };
 
     return (
+        <div className="App">
+            <BackgroundAnimation />
         <div className='weatherContainer'>
             {loading ? (
                 <div>Chargement...</div>
@@ -90,6 +93,7 @@ const App = () => {
                     </div>
                 </div>
             ) : null}
+        </div>
         </div>
     );
 };
