@@ -34,12 +34,16 @@
   background-repeat: no-repeat;
   background-position: left center; 
   }
+
+  .icon{
+    display: flex;
+    justify-content: space-between;
+  
+  }
+
   .hourContainer{
     display: flex;
     justify-content: space-between;
   }
 
-  .icon{
-    display: flex;
-    justify-content: space-between;
-  }
+ 
