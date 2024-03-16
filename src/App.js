@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SunAnimation from './components/SunAnimation';
+import 'animate.css'
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null);
@@ -79,7 +80,7 @@ const App = () => {
                 <div>
                     <h2>{weatherData.name}, {weatherData.sys.country}</h2>
                     <h1>{weatherData.main.temp.toFixed(1)}°</h1>
-                    <span className='getWeatherIcon'>{getWeatherIcon(weatherData.weather[0].id)}</span>
+                    <span className='getWeatherIcon animate__animated animate__rotateIn'>{getWeatherIcon(weatherData.weather[0].id)}</span>
                     <h3 className='weatherDescription'>{weatherData.weather[0].description.toUpperCase()}</h3>
                     <SunAnimation sunrise={weatherData && weatherData.sys.sunrise} sunset={weatherData && weatherData.sys.sunset} />
                     <div className="hourContainer">
