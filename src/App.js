@@ -97,7 +97,7 @@ const App = () => {
                         <SunAnimation sunrise={weatherData && weatherData.sys.sunrise} sunset={weatherData && weatherData.sys.sunset} />
                         <div className="hourContainer">
                             <em>{formatTime(weatherData.sys.sunrise)}</em>
-                            <em>{formatTime(weatherData.sys.sunset)}</em>
+                            <em>{formatTime(weatherData.sys.sunset.toFixed(1))}</em>
 
                         </div>
                         <div className="icon">
