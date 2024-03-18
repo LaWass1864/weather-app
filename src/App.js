@@ -1,16 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import SunAnimation from './components/SunAnimation';
-import 'animate.css'
+import 'animate.css';
 
 const App = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [isDay, setIsDay] = useState(true);
 
     useEffect(() => {
+        // Fonction pour déterminer s'il fait jour ou nuit en fonction de l'heure
+        const determineTimeOfDay = () => {
+            const currentHour = new Date().getHours();
+            const isDayTime = currentHour >= 6 && currentHour < 18;
+            setIsDay(isDayTime);
 
-        // verifier si la géolocalisation est prise par le navigateur
+        };
+
+        // Appeler la fonction pour déterminer l'heure au montage et mettre en place un intervalle pour mettre à jour l'état toutes les heures
+        determineTimeOfDay();
+        const interval = setInterval(determineTimeOfDay, 1000 * 60 * 60);
+
+        // Nettoyer l'intervalle lors du démontage du composant
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        // Vérifier si la géolocalisation est prise en charge par le navigateur
         const getLocation = () => {
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(getWeatherData, handleLocationError);
@@ -20,7 +37,7 @@ const App = () => {
             }
         };
 
-        // aller chercher les données de l'API
+        // Aller chercher les données de l'API météo
         const getWeatherData = (position) => {
             const { latitude, longitude } = position.coords;
             axios.get(
@@ -43,6 +60,11 @@ const App = () => {
 
         getLocation();
     }, []);
+
+    const isSunset = (sunsetTimestamp) => {
+        const currentTime = new Date().getTime() / 1000; // Convertir en secondes
+        return currentTime > sunsetTimestamp;
+    };
 
     //  mettre un icon en fonction du temps
     const getWeatherIcon = (weatherId) => {
@@ -73,17 +95,9 @@ const App = () => {
         return `${hours}:${minutes}`;
     };
 
-    // le bakcground change lorsque le soleil se couche 
-    const isSunset = (sunsetTimestamp) => {
-        const currentTime = new Date().getTime() / 1000; // Convertir en secondes
-        return currentTime > sunsetTimestamp;
-    };
-
-
     return (
-        // le background de l'application se fonce 5 minute avant que le soleil se couche
-        <div className={`App ${weatherData && isSunset(weatherData.sys.sunset) ? 'sunsetBackground' : ''}`}>
-            <div className='weatherContainer'>
+        <div className={`App ${!loading && weatherData && isSunset(weatherData.sys.sunset) ? 'sunsetBackground' : ''}`}>
+            <div className={`weatherContainer ${isDay ? 'day' : 'night'}`}>
                 {loading ? (
                     <div>Chargement...</div>
                 ) : error ? (
@@ -98,16 +112,15 @@ const App = () => {
                         <div className="hourContainer">
                             <em>{formatTime(weatherData.sys.sunrise)}</em>
                             <em>{formatTime(weatherData.sys.sunset.toFixed(1))}</em>
-
                         </div>
                         <div className="icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sunrise" width="26" height="26" viewBox="0 0 26 26" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-sunrise" width="26" height="26" viewBox="0 0 26 26" strokeWidth="1" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
                                 <path d="M3 21l18 0" />
                                 <path d="M12 9v-6l3 3m-6 0l3 -3" />
                             </svg>
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-sunset" width="26" height="26" viewBox="0 0 26 26" stroke-width="1" stroke="#2c3e50" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <svg xmlns="http://www.w3.org/2000/svg" className="icon icon-tabler icon-tabler-sunset" width="26" height="26" viewBox="0 0 26 26" strokeWidth="1" stroke="#2c3e50" fill="none" strokeLinecap="round" strokeLinejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M3 17h1m16 0h1m-15.4 -6.4l.7 .7m12.1 -.7l-.7 .7m-9.7 5.7a4 4 0 0 1 8 0" />
                                 <path d="M3 21l18 0" />
@@ -119,6 +132,6 @@ const App = () => {
             </div>
         </div>
     );
-};
+}
 
 export default App;

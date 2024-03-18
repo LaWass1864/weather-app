@@ -26,22 +26,33 @@ body {
     font-size: 54px;
   }
 
-    .weatherContent {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .getWeatherIcon {
-      font-size: 8em;
-      display: flex;
-      justify-content: center;
-
-    }
-
-    .sunsetBackground {
-      background-color: #0c4aa7; /* Couleur d'arrière-plan pour le coucher de soleil */
+  .weatherContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  
+  .getWeatherIcon {
+    font-size: 8em;
+    display: flex;
+    justify-content: center;
+
   }
+
+  .sunsetBackground {
+    background-color: #0c4aa7;
+    /* Couleur d'arrière-plan pour le coucher de soleil */
+  }
+
+
+}
+
+.day {
+  background-color: #FFDEE9;
+  background-image: linear-gradient(0deg, #FFDEE9 0%, #B5FFFC 100%);
+}
+
+.night {
+  background-color: #2173fd;
+  background-image: linear-gradient(19deg, #2173fd 0%, #190074 100%);
+}
